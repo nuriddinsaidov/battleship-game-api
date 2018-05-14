@@ -42,7 +42,7 @@ class ShotFeature extends Feature
             'turnId' => $turn->get()
         ]);
 
-       // $turn->next();
+        $turn->next();
 
         return $this->run(new RespondWithJsonJob($result));
 
