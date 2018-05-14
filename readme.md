@@ -9,6 +9,7 @@ at this version this game available just with bot
 -Open the console and cd your project root directory
 -Run composer install or php composer.phar install
 
+
 ##### List of available commands
 1. starting game with empty grid
 2. filling empty grid with ships
