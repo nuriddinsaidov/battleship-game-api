@@ -18,6 +18,7 @@ at this version this game available just with bot
 5. receiving shot
 6. list of the shots from both player and bot
 
+##### instructions
 1. to create empty grid send post request to api/v1/game/grid/create
 2. to place ship send post request to `/api/v1/game/{gameId}/place-ship`and get request with param x = number from 1 to 10 and y = letter from A to J
 3. to start the game send post request to the url api/v1/game/start 
