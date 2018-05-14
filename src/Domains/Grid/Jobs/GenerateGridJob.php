@@ -6,10 +6,11 @@ use Lucid\Foundation\Job;
 class GenerateGridJob extends Job
 {
     private $grid;
+
     /**
      * Create a new job instance.
      *
-     * @return void
+     * @param $grid
      */
     public function __construct($grid)
     {

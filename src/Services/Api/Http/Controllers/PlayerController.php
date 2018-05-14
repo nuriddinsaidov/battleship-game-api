@@ -3,6 +3,7 @@ namespace App\Services\Api\Http\Controllers;
 
 use App\Services\Api\Features\ReceiveShotFeature;
 use App\Services\Api\Features\ShotFeature;
+use App\Services\Api\Features\ShotListFeature;
 use Illuminate\Http\Request;
 use Lucid\Foundation\Http\Controller;
 
@@ -34,9 +35,9 @@ class PlayerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function shotList(Request $request)
     {
-        //
+        return $this->serve(ShotListFeature::class);
     }
 
     /**

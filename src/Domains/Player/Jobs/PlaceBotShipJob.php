@@ -9,7 +9,6 @@ class PlaceBotShipJob extends Job
 
     private $grid;
 
-    private $occupiedPositions=[];
 
     /**
      * Create a new job instance.
@@ -42,7 +41,7 @@ class PlaceBotShipJob extends Job
 
 
                 if (!isset($this->grid['grid'][$position['x']][$position['y']])) {
-                    throw new \OutOfBoundsException('Ship does not fit into the grid with such a position/' . $position['y'] . '/' . $position['x'].'/'.$ship::SIZE.'/'. $ship::ID);
+                    throw new \OutOfBoundsException('Ship does not fit into the grid with such a position/');
                 }
                 if ($this->grid['grid'][$position['x']][$position['y']] > 0) {
                     throw new \InvalidArgumentException('Ship overlaps with another one, please choose another space.' . $position['y'] . '/' . $position['x'].'/'.$ship::SIZE .'/'.  $ship::ID);

@@ -22,6 +22,8 @@ Route::group(['prefix' => ''], function() {
 
         Route::post('/game/{gameId}/receive-shot', 'playerController@receiveShot');
 
+        Route::post('/game/{gameId}/shotList', 'playerController@shotList');
+
         Route::post('/game/grid/create', 'gridController@create');
 
         Route::post('/game/{gameId}/place-ship', 'gridController@placeShip');

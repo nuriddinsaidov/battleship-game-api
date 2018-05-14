@@ -9,11 +9,6 @@ class GameFeatureTest extends TestCase
 {
     public function test_gamefeature()
     {
-       $game = new GameFeature(
-           new PlayerFeature(),
-           new PlayerFeature()
-       );
 
-       var_dump($game->play());
     }
 }

@@ -19,11 +19,18 @@ class PositionJob extends Job
      */
     public function __construct($letter=null, $number=null)
     {
-        $this->setLetter($letter);
-        $this->setNumber((int)$number);
+
+        $this->setLetter($letter ? $letter : $this->generateLetter());
+        $this->setNumber((int)$number ? $number : $this->generateNumber());
     }
 
+    public function generateLetter(){
+        return substr(str_shuffle("ABCDEFGHIJ"), -1);
+    }
 
+    public function generateNumber(){
+        return mt_rand(1,10);
+    }
     /**
      * Execute the job.
      *

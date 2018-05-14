@@ -14,7 +14,7 @@ class CreateGridJob extends Job
 
     const WATER = 0;
 
-    public function __construct($ships)
+    public function __construct($ships = [])
     {
 
         $this->ships = $ships;
