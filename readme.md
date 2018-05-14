@@ -4,10 +4,10 @@ battleship game api made as a personal project to improve my knowledge regarding
 at this version this game available just with bot
 
 ##### how to run application 
--Download composer https://getcomposer.org/download/
--Pull project from git repository.
--Open the console and cd your project root directory
--Run composer install or php composer.phar install
+- Download composer https://getcomposer.org/download/
+- Pull project from git repository.
+- Open the console and cd your project root directory
+- Run composer install or php composer.phar install
 
 
 ##### List of available commands
