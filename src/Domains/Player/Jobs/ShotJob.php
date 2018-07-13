@@ -1,8 +1,9 @@
 <?php
+
 namespace App\Domains\Player\Jobs;
 
-use Lucid\Foundation\Job;
 use App\Data\Repositories\redisRepository;
+use Lucid\Foundation\Job;
 
 class ShotJob extends Job
 {
@@ -11,6 +12,7 @@ class ShotJob extends Job
     private $game;
     private $player;
     protected $position;
+
     /**
      * Create a new job instance.
      *
@@ -22,7 +24,6 @@ class ShotJob extends Job
         $this->repository = new redisRepository();
         $this->position = $position;
         $this->player = $player;
-
     }
 
     /**
@@ -32,7 +33,6 @@ class ShotJob extends Job
      */
     public function handle()
     {
-
         $y = $this->position::letterToNumber($this->position->letter());
         $x = $this->position->number();
 
@@ -40,38 +40,34 @@ class ShotJob extends Job
         $this->game = $game['player'][$this->player]['game'];
         $shipId = $this->game['grid'][$y][$x];
 
-
         if ($shipId !== 0) {
             $this->game['attacks'][$y][$x] = -abs($this->game['grid'][$y][$x]);
             $game['player'][$this->player]['game'] = $this->game;
             $this->save($game);
+
             return [
-                'status'=>'hit',
+                'status'   => 'hit',
                 'position' => [
                     'x' => $x,
-                    'y' => $y
-                ]
+                    'y' => $y,
+                ],
                 ];
-
         }
 
-        return ['status'=>'mis', 'position' => [
+        return ['status'=> 'mis', 'position' => [
             'x' => $x,
-            'y' => $y
+            'y' => $y,
         ]];
     }
 
     public function getGame()
     {
-        return $this->repository->getGame($this->gameId,true);
+        return $this->repository->getGame($this->gameId, true);
     }
 
-    public function save($game){
-
-        $game['player'][$this->player]['game'] =$this->game;
+    public function save($game)
+    {
+        $game['player'][$this->player]['game'] = $this->game;
         $this->repository->save($game);
-
     }
-
-
 }

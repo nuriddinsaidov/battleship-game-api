@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Domains\Grid\Jobs;
 
 use Lucid\Foundation\Job;
@@ -16,9 +17,7 @@ class CreateGridJob extends Job
 
     public function __construct($ships = [])
     {
-
         $this->ships = $ships;
-
     }
 
     /**
@@ -28,12 +27,10 @@ class CreateGridJob extends Job
      */
     public function handle()
     {
-
         return [
             'ships' => $this->getShips(),
-            'grid' => $this->getGrid()
+            'grid'  => $this->getGrid(),
         ];
-
     }
 
     /**
@@ -47,6 +44,7 @@ class CreateGridJob extends Job
                 $this->grid[$i][$j] = static::WATER;
             }
         }
+
         return $this->grid;
     }
 
@@ -58,7 +56,6 @@ class CreateGridJob extends Job
         return range('A', 'J');
     }
 
-
     /**
      * @return array
      */
@@ -67,8 +64,8 @@ class CreateGridJob extends Job
         return range(1, 10);
     }
 
-    public function getShips(){
-
+    public function getShips()
+    {
         return $this->ships;
     }
 }

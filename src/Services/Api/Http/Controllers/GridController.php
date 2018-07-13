@@ -1,7 +1,7 @@
 <?php
+
 namespace App\Services\Api\Http\Controllers;
 
-use App\Domains\Player\Jobs\PlaceShipJob;
 use App\Services\Api\Features\GridFeature;
 use App\Services\Api\Features\PlaceShipFeature;
 use Illuminate\Http\Request;
@@ -32,7 +32,8 @@ class GridController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -43,7 +44,8 @@ class GridController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -54,7 +56,8 @@ class GridController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -65,8 +68,9 @@ class GridController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function placeShip()
@@ -77,7 +81,8 @@ class GridController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

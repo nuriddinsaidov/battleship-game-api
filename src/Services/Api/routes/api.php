@@ -12,10 +12,8 @@
 */
 
 // Prefix: /api/api
-Route::group(['prefix' => ''], function() {
-
-    Route::group(['prefix'=>'v1'], function() {
-
+Route::group(['prefix' => ''], function () {
+    Route::group(['prefix'=>'v1'], function () {
         Route::post('/game/start', 'gameController@start');
 
         Route::post('/game/{gameId}/shot', 'playerController@shot');
@@ -27,18 +25,13 @@ Route::group(['prefix' => ''], function() {
         Route::post('/game/grid/create', 'gridController@create');
 
         Route::post('/game/{gameId}/place-ship', 'gridController@placeShip');
-
     });
 
-    Route::get('/', function() {
+    Route::get('/', function () {
         return response()->json(['path' => '/api/api']);
     });
 
-
-    
     Route::middleware('auth:api')->get('/user', function (Request $request) {
         return $request->user();
     });
-
-
 });

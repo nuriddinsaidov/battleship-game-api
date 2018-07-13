@@ -1,11 +1,10 @@
 <?php
+
 namespace App\Services\Api\Http\Controllers;
 
-use App\Services\Api\Features\PlayerFeature;
-use App\Services\Api\Features\ShotFeature;
+use App\Services\Api\Features\GameFeature;
 use Illuminate\Http\Request;
 use Lucid\Foundation\Http\Controller;
-use App\Services\Api\Features\GameFeature;
 
 class GameController extends Controller
 {
@@ -19,7 +18,6 @@ class GameController extends Controller
         //
     }
 
-
     /**
      * Show the form for creating a new resource.
      *
@@ -29,10 +27,12 @@ class GameController extends Controller
     {
         return $this->serve(GameFeature::class);
     }
+
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -43,7 +43,8 @@ class GameController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -54,7 +55,8 @@ class GameController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -65,8 +67,9 @@ class GameController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -77,7 +80,8 @@ class GameController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

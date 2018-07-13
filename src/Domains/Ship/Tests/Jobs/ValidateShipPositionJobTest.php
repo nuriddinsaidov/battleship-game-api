@@ -1,7 +1,7 @@
 <?php
+
 namespace App\Domains\Ship\Tests\Jobs;
 
-use App\Domains\Ship\Jobs\ValidateShipPositionJob;
 use Tests\TestCase;
 
 class ValidateShipPositionJobTest extends TestCase

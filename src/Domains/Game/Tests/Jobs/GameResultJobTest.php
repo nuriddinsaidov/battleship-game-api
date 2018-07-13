@@ -1,7 +1,7 @@
 <?php
+
 namespace App\Domains\Game\Tests\Jobs;
 
-use App\Domains\Game\Jobs\GameResultJob;
 use Tests\TestCase;
 
 class GameResultJobTest extends TestCase

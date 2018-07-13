@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Domains\Player\Jobs;
 
 use Lucid\Foundation\Job;
@@ -9,13 +10,12 @@ class PlaceBotShipJob extends Job
 
     private $grid;
 
-
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($ships,  $grid)
+    public function __construct($ships, $grid)
     {
         $this->grid = $grid;
         $this->ships = $ships;
@@ -35,24 +35,22 @@ class PlaceBotShipJob extends Job
                 throw new ShipAlreadyPlacedException();
             }
             $position = $this->checkMatchPosition($ship::SIZE);
-            $maxAdditionalElements = $ship::SIZE+$position['x'];
+            $maxAdditionalElements = $ship::SIZE + $position['x'];
 
-            for ($i = 0; $i < $ship::SIZE; ++$i) {
-
-
+            for ($i = 0; $i < $ship::SIZE; $i++) {
                 if (!isset($this->grid['grid'][$position['x']][$position['y']])) {
                     throw new \OutOfBoundsException('Ship does not fit into the grid with such a position/');
                 }
                 if ($this->grid['grid'][$position['x']][$position['y']] > 0) {
-                    throw new \InvalidArgumentException('Ship overlaps with another one, please choose another space.' . $position['y'] . '/' . $position['x'].'/'.$ship::SIZE .'/'.  $ship::ID);
+                    throw new \InvalidArgumentException('Ship overlaps with another one, please choose another space.'.$position['y'].'/'.$position['x'].'/'.$ship::SIZE.'/'.$ship::ID);
                 }
 
                 $this->grid['grid'][$position['x']][$position['y']] = $ship::ID;
                 $this->grid['ships'][$shipId] = $ship->getName();
 
-                if($maxAdditionalElements >= 10) {
+                if ($maxAdditionalElements >= 10) {
                     $position['x']--;
-                }else{
+                } else {
                     $position['x']++;
                 }
             }
@@ -61,51 +59,46 @@ class PlaceBotShipJob extends Job
         return $this->grid;
     }
 
-    public function generatePosition(){
-        $x = mt_rand(0,9);
-        $y = mt_rand(0,9);
+    public function generatePosition()
+    {
+        $x = mt_rand(0, 9);
+        $y = mt_rand(0, 9);
 
         return [
           'x' => $x,
-          'y' => $y
+          'y' => $y,
         ];
     }
 
+    public function checkMatchPosition($shipSize)
+    {
+        $pos = $this->generatePosition();
+        $x = $pos['x'];
+        $y = $pos['y'];
 
-
-    public function checkMatchPosition($shipSize){
-
-        $pos=$this->generatePosition();
-        $x=$pos['x'];
-        $y=$pos['y'];
-
-        $maxAdditionalElements  = $shipSize + $x;
+        $maxAdditionalElements = $shipSize + $x;
 
         $gisShipSize = $shipSize;
 
-
-        while($shipSize>0){
-
-            if($this->grid['grid'][$x][$y] > 0){
-                $pos=$this->generatePosition();
-                $x=$pos['x'];
-                $y=$pos['y'];
+        while ($shipSize > 0) {
+            if ($this->grid['grid'][$x][$y] > 0) {
+                $pos = $this->generatePosition();
+                $x = $pos['x'];
+                $y = $pos['y'];
                 $maxAdditionalElements = $gisShipSize + $x;
-                $shipSize=$gisShipSize;
+                $shipSize = $gisShipSize;
                 continue;
             }
 
-            if($maxAdditionalElements >= 10) {
+            if ($maxAdditionalElements >= 10) {
                 $x--;
-            }else{
+            } else {
                 $x++;
             }
-
 
             $shipSize--;
         }
 
         return $pos;
-
     }
 }

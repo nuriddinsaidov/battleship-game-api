@@ -21,6 +21,6 @@ $factory->define('User namespace here', function (Faker\Generator $faker) {
         'name'           => $faker->name,
         'email'          => $faker->safeEmail,
         'password'       => $password ?: $password = bcrypt('secret'),
-        'remember_token' => str_random(10)
+        'remember_token' => str_random(10),
     ];
 });

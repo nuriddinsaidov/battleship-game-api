@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Domains\Player\Jobs;
 
 use Illuminate\Support\Facades\Redis;
@@ -19,7 +20,6 @@ class BotPlayerJob extends Job
         $this->playerId = $redis->incr('playerId');
     }
 
-
     /**
      * Execute the job.
      *
@@ -29,7 +29,7 @@ class BotPlayerJob extends Job
     {
         return [
             'type' => 'Bot',
-            'id' => $this->playerId
+            'id'   => $this->playerId,
         ];
     }
 }

@@ -1,7 +1,7 @@
 <?php
+
 namespace App\Domains\Grid\Tests\Jobs;
 
-use App\Domains\Grid\Jobs\SyncGridJob;
 use Tests\TestCase;
 
 class SyncGridJobTest extends TestCase

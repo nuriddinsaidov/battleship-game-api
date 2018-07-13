@@ -1,13 +1,15 @@
 <?php
+
 namespace App\Domains\Grid\Jobs;
 
-use Lucid\Foundation\Job;
 use App\Data\Repositories\redisRepository;
+use Lucid\Foundation\Job;
 
 class GetGridJob extends Job
 {
     private $gameId;
     private $player;
+
     /**
      * Create a new job instance.
      *
@@ -21,15 +23,15 @@ class GetGridJob extends Job
 
     /**
      * Execute the job.
+     *
      * @param $repository
      *
      * @return mixed
      */
     public function handle(redisRepository $repository)
     {
+        $game = $repository->getGame($this->gameId, true);
 
-        $game = $repository->getGame($this->gameId,true);
         return $game['player'][$this->player]['game'];
-
     }
 }

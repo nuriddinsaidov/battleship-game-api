@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Services\Api\Features;
 
 use App\Domains\Game\Jobs\StartGameJob;
@@ -14,8 +15,6 @@ use App\Domains\Ship\Jobs\PatrolJob;
 use App\Domains\Ship\Jobs\ShipsJob;
 use App\Domains\Ship\Jobs\SubmarineJob;
 use Lucid\Foundation\Feature;
-use Illuminate\Http\Request;
-use App\Domains\Ship\Jobs\PositionJob;
 
 class GridFeature extends Feature
 {
@@ -26,7 +25,7 @@ class GridFeature extends Feature
 
         $ships = $this->run(ShipsJob::class);
 
-        $emptyGrid = $this->run(CreateGridJob::class,[
+        $emptyGrid = $this->run(CreateGridJob::class, [
             'ships' => $ships,
         ]);
 
@@ -36,8 +35,8 @@ class GridFeature extends Feature
         $player['a']['game']['attacks'] = $emptyGrid['grid'];
         $player['b']['game']['attacks'] = $emptyGrid['grid'];
 
-        $result = $this->run(StartGameJob::class,[
-            'player' => $player
+        $result = $this->run(StartGameJob::class, [
+            'player' => $player,
         ]);
 
         unset($result['player']['b']['game']['grid']);
@@ -46,9 +45,9 @@ class GridFeature extends Feature
         return $this->run(new RespondWithJsonJob($result));
     }
 
-    public function autoPlaceShips($grid){
-
-        $result = $this->run(PlaceBotShipJob::class,[
+    public function autoPlaceShips($grid)
+    {
+        $result = $this->run(PlaceBotShipJob::class, [
             'ships' => [
                 new BattleshipJob(),
                 new CarrierJob(),
@@ -61,6 +60,4 @@ class GridFeature extends Feature
 
         return $result;
     }
-
-
 }
