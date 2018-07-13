@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Domains\Ship\Jobs;
 
 use Lucid\Foundation\Job;
@@ -13,24 +14,27 @@ class PositionJob extends Job
      * @var int
      */
     private $number;
+
     /**
      * @param string $letter
      * @param int    $number
      */
-    public function __construct($letter=null, $number=null)
+    public function __construct($letter = null, $number = null)
     {
-
         $this->setLetter($letter ? $letter : $this->generateLetter());
-        $this->setNumber((int)$number ? $number : $this->generateNumber());
+        $this->setNumber((int) $number ? $number : $this->generateNumber());
     }
 
-    public function generateLetter(){
-        return substr(str_shuffle("ABCDEFGHIJ"), -1);
+    public function generateLetter()
+    {
+        return substr(str_shuffle('ABCDEFGHIJ'), -1);
     }
 
-    public function generateNumber(){
-        return mt_rand(1,10);
+    public function generateNumber()
+    {
+        return mt_rand(1, 10);
     }
+
     /**
      * Execute the job.
      *

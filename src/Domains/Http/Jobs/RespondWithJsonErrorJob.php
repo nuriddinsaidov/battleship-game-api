@@ -10,8 +10,8 @@ class RespondWithJsonErrorJob extends RespondWithJsonJob
     {
         $this->content = [
             'status' => $status,
-            'error' => [
-                'code' => $code,
+            'error'  => [
+                'code'    => $code,
                 'message' => $message,
             ],
         ];

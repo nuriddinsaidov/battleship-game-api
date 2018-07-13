@@ -2,8 +2,8 @@
 
 namespace App\Domains\Http\Jobs;
 
-use Lucid\Foundation\Job;
 use Illuminate\Routing\ResponseFactory;
+use Lucid\Foundation\Job;
 
 class RespondWithViewJob extends Job
 {

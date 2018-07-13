@@ -207,7 +207,7 @@ class Repository
             $attribute = strtolower(substr($method, 6));
             array_unshift($arguments, $attribute);
 
-            return call_user_func_array(array($this, 'findBy'), $arguments);
+            return call_user_func_array([$this, 'findBy'], $arguments);
         }
     }
 }

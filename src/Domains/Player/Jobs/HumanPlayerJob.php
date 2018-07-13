@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Domains\Player\Jobs;
 
 use Illuminate\Support\Facades\Redis;
@@ -28,7 +29,7 @@ class HumanPlayerJob extends Job
     {
         return [
             'type' => 'Human',
-            'id' => $this->playerId
+            'id'   => $this->playerId,
         ];
     }
 }

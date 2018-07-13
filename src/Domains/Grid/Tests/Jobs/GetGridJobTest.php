@@ -1,7 +1,7 @@
 <?php
+
 namespace App\Domains\Grid\Tests\Jobs;
 
-use App\Domains\Grid\Jobs\GetGridJob;
 use Tests\TestCase;
 
 class GetGridJobTest extends TestCase

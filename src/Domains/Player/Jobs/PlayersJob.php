@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Domains\Player\Jobs;
 
 use Lucid\Foundation\Job;
@@ -6,6 +7,7 @@ use Lucid\Foundation\Job;
 class PlayersJob extends Job
 {
     public static $count = 0;
+
     /**
      * Create a new job instance.
      *
@@ -13,7 +15,7 @@ class PlayersJob extends Job
      */
     public function __construct()
     {
-        PlayersJob::$count++;
+        self::$count++;
     }
 
     /**
@@ -23,6 +25,6 @@ class PlayersJob extends Job
      */
     public function __destruct()
     {
-        PlayersJob::$count--;
+        self::$count--;
     }
 }

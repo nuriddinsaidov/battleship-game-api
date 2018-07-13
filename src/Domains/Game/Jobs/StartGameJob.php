@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Domains\Game\Jobs;
 
 use Illuminate\Support\Facades\Redis;
@@ -17,17 +18,16 @@ class StartGameJob extends Job
         $this->player = $player;
     }
 
-
-    public function handle(){
-
+    public function handle()
+    {
         $config = [
-            'gameId' =>   $this->gameId,
+            'gameId' => $this->gameId,
             'player' => $this->player,
 
         ];
 
         $this->redis->set('game_'.$this->gameId, json_encode($config));
+
         return $config;
     }
-
 }

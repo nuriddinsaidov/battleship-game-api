@@ -1,12 +1,12 @@
 <?php
+
 namespace App\Domains\Game\Jobs;
 
-use Lucid\Foundation\Job;
 use App\Data\Repositories\redisRepository;
+use Lucid\Foundation\Job;
 
 class StatusJob extends Job
 {
-
     private $repository;
 
     private $gameId;

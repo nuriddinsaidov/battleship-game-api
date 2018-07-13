@@ -1,8 +1,9 @@
 <?php
+
 namespace App\Domains\Player\Jobs;
 
-use Lucid\Foundation\Job;
 use App\Data\Repositories\GameHistory;
+use Lucid\Foundation\Job;
 
 class ShotRecordJob extends Job
 {
@@ -28,14 +29,12 @@ class ShotRecordJob extends Job
      */
     public function __construct($gameId, $shot, $position, $player, $turnId)
     {
-
         $this->gameId = $gameId;
         $this->shot = $shot;
         $this->position = $position;
         $this->player = $player;
         $this->turnId = $turnId;
         $this->history = new GameHistory($this->gameId, $this->player);
-
     }
 
     /**
@@ -48,13 +47,14 @@ class ShotRecordJob extends Job
         $this->history->recordShot($this->shotMapper(), $this->turnId);
     }
 
-    public function shotMapper(){
+    public function shotMapper()
+    {
         return [
             'position' => [
                 'letter' => $this->position->letter(),
-                'number' => $this->position->number()
+                'number' => $this->position->number(),
              ],
-            'shotStatus' => $this->shot['status']
+            'shotStatus' => $this->shot['status'],
         ];
     }
 }

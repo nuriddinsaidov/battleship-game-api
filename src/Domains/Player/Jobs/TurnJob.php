@@ -1,8 +1,9 @@
 <?php
+
 namespace App\Domains\Player\Jobs;
 
-use Lucid\Foundation\Job;
 use App\Data\Repositories\GameHistory;
+use Lucid\Foundation\Job;
 
 class TurnJob extends Job
 {
@@ -32,38 +33,34 @@ class TurnJob extends Job
     {
         $turn = '';
         if ($this->get() % 2 === 0) {
-            $turn = "a";
+            $turn = 'a';
         } else {
-            $turn = "b";
+            $turn = 'b';
         }
 
-        if($this->player === $turn) {
+        if ($this->player === $turn) {
             $this->result = true;
         }
 
-        if($this->player !== $turn) {
+        if ($this->player !== $turn) {
             throw new \InvalidArgumentException('opponents turn');
         }
 
         return $this;
-
     }
 
-
-
-    public function checkTurn(){
+    public function checkTurn()
+    {
         return $this->result;
     }
 
-    public function get(){
-
+    public function get()
+    {
         return $this->history->getTurn();
-
     }
 
-    public function next(){
-
+    public function next()
+    {
         $this->history->nextPlayer();
-
     }
 }

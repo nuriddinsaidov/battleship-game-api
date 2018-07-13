@@ -1,12 +1,12 @@
 <?php
+
 namespace App\Domains\Player\Jobs;
 
-use Lucid\Foundation\Job;
 use App\Data\Repositories\GameHistory;
+use Lucid\Foundation\Job;
 
 class ShotListJob extends Job
 {
-
     private $history;
 
     /**
@@ -17,7 +17,6 @@ class ShotListJob extends Job
      */
     public function __construct($gameId, $player)
     {
-
         $this->history = new GameHistory($gameId, $player);
     }
 

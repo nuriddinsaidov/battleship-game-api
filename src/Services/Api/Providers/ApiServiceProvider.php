@@ -1,12 +1,12 @@
 <?php
+
 namespace App\Services\Api\Providers;
 
-use View;
-use Lang;
 use Illuminate\Database\Eloquent\Factory as EloquentFactory;
 use Illuminate\Support\ServiceProvider;
-use App\Services\Api\Providers\RouteServiceProvider;
 use Illuminate\Translation\TranslationServiceProvider;
+use Lang;
+use View;
 
 class ApiServiceProvider extends ServiceProvider
 {
@@ -25,18 +25,18 @@ class ApiServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadMigrationsFrom([
-            realpath(__DIR__ . '/../database/migrations')
+            realpath(__DIR__.'/../database/migrations'),
         ]);
 
         $this->app->make(EloquentFactory::class)
-            ->load(realpath(__DIR__ . '/../database/factories'));
+            ->load(realpath(__DIR__.'/../database/factories'));
     }
 
     /**
-    * Register the Api service provider.
-    *
-    * @return void
-    */
+     * Register the Api service provider.
+     *
+     * @return void
+     */
     public function register()
     {
         $this->app->register(RouteServiceProvider::class);

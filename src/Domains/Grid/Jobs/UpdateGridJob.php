@@ -1,8 +1,9 @@
 <?php
+
 namespace App\Domains\Grid\Jobs;
 
-use Lucid\Foundation\Job;
 use App\Data\Repositories\redisRepository;
+use Lucid\Foundation\Job;
 
 class UpdateGridJob extends Job
 {
@@ -21,16 +22,15 @@ class UpdateGridJob extends Job
      */
     public function __construct($grid, $ships, $gameId, $player)
     {
-
         $this->grid = $grid;
         $this->ships = $ships;
         $this->player = $player;
         $this->gameId = $gameId;
-
     }
 
     /**
      * Execute the job.
+     *
      * @param $repository
      *
      * @return void
@@ -41,6 +41,4 @@ class UpdateGridJob extends Job
 
         $repository->setGrid($this->grid, $this->gameId, $this->player);
     }
-
-
 }

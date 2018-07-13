@@ -1,14 +1,11 @@
 <?php
 
-
 namespace App\Data\Repositories;
-
 
 use Illuminate\Support\Facades\Redis;
 
 class RedisRepository
 {
-
     private $redis;
 
     private $result;
@@ -18,7 +15,7 @@ class RedisRepository
         $this->redis = Redis::connection();
     }
 
-    public function getGame($id, $withGrid =false)
+    public function getGame($id, $withGrid = false)
     {
         $game = $this->redis->get('game_'.$id);
 
@@ -28,7 +25,7 @@ class RedisRepository
 
         $result = json_decode($game, true);
 
-        if(!$withGrid) {
+        if (!$withGrid) {
             unset($result['player']['b']['game']['grid']);
             unset($result['player']['b']['game']['ships']);
         }
@@ -40,7 +37,7 @@ class RedisRepository
         return $result;
     }
 
-    public function get($id, $withGrid =false)
+    public function get($id, $withGrid = false)
     {
         $game = $this->redis->get('game_'.$id);
 
@@ -50,7 +47,7 @@ class RedisRepository
 
         $this->result = json_decode($game, true);
 
-        if(!$withGrid) {
+        if (!$withGrid) {
             unset($this->result['player']['b']['game']['grid']);
             unset($this->result['player']['b']['game']['ships']);
         }
@@ -62,26 +59,21 @@ class RedisRepository
         return $this;
     }
 
-
     public function player($id)
     {
-
-       return  $this->result['player'][$id];
-
+        return  $this->result['player'][$id];
     }
 
-    public function setConfig($config){
-
-        $this->result['config']=$config;
+    public function setConfig($config)
+    {
+        $this->result['config'] = $config;
 
         $this->save($this->result);
-
     }
 
-    public function getTurn(){
-
-       return  $this->result['config'];
-
+    public function getTurn()
+    {
+        return  $this->result['config'];
     }
 
     public function save($game)
@@ -97,18 +89,14 @@ class RedisRepository
     public function setGrid($grid, $gameId, $player)
     {
         $game = $this->getGame($gameId, true);
-        $game['player'][$player]['game']['grid']=$grid;
+        $game['player'][$player]['game']['grid'] = $grid;
         $this->save($game);
-
     }
 
     public function setShip($ship, $gameId, $player)
     {
         $game = $this->getGame($gameId, true);
-        $game['player'][$player]['game']['ships']=$ship;
+        $game['player'][$player]['game']['ships'] = $ship;
         $this->save($game);
-
     }
-
-
 }

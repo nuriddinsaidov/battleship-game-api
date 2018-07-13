@@ -2,8 +2,8 @@
 
 namespace App\Domains\Http\Jobs;
 
-use Lucid\Foundation\Job;
 use Illuminate\Routing\ResponseFactory;
+use Lucid\Foundation\Job;
 
 class RespondWithJsonJob extends Job
 {
@@ -23,7 +23,7 @@ class RespondWithJsonJob extends Job
     public function handle(ResponseFactory $factory)
     {
         $response = [
-            'data' => $this->content,
+            'data'   => $this->content,
             'status' => $this->status,
         ];
 

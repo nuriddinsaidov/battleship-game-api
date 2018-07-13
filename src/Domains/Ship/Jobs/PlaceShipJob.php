@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Domains\Ship\Jobs;
 
 use Lucid\Foundation\Job;
@@ -16,7 +17,7 @@ class PlaceShipJob extends Job
      *
      * @return void
      */
-    public function __construct($ship,  $position, $grid)
+    public function __construct($ship, $position, $grid)
     {
         $this->position = $position;
         $this->grid = $grid;
@@ -36,8 +37,8 @@ class PlaceShipJob extends Job
             throw new ShipAlreadyPlacedException();
         }
 
-        for ($i = 0; $i < $this->ship::SIZE; ++$i) {
-            $x = $this->position::letterToNumber($this->position->letter())-$i;
+        for ($i = 0; $i < $this->ship::SIZE; $i++) {
+            $x = $this->position::letterToNumber($this->position->letter()) - $i;
             $y = $this->position->number();
             if (!isset($this->grid['grid'][$x][$y])) {
                 throw new \OutOfBoundsException('Ship does not fit into the grid with such a hole and position/'.$x.'/'.$y);
@@ -51,5 +52,4 @@ class PlaceShipJob extends Job
 
         return $this->grid;
     }
-
 }
